@@ -135,12 +135,39 @@ form ul li {
   margin-top: 15px;
   color: #000;
 }
+#allPostsWrapper .single-post .post-comments {
+  display: none;
+}
 
 #allPostsWrapper .single-post .post-content {
   padding-bottom: 10px;
   border-bottom: 1px solid black;
   margin-bottom: 10px;
   font-size: 22px;
+}
+#allPostsWrapper .single-post .post-actions {
+  display: flex;
+  justify-content: space-between;
+  color: gray;
+}
+#allPostsWrapper .single-post .post-actions div button.like-btn {
+  background-image: url("img/like.png");
+  padding: 5px 15px 5px 40px;
+  background-repeat: no-repeat;
+  background-position: 10px;
+  border: 0;
+}
+#allPostsWrapper .single-post .post-actions div button.comment-btn {
+  background-image: url("img/comment.png");
+  padding: 5px 15px 5px 40px;
+  background-repeat: no-repeat;
+  background-position: 10px;
+  border: 0;
+}
+#allPostsWrapper .single-post .post-actions div button.remove-btn {
+  border-color: red;
+  color: red;
+  padding: 5px 15px;
 }
 #allPostsWrapper .single-post form {
   height: 30px;
@@ -153,4 +180,10 @@ form ul li {
 #allPostsWrapper .single-post form button {
   width: 15%;
   background-color: gray;
+}
+
+#allPostsWrapper .single-post .post-comments .single-comment {
+  border: 1px dotted green;
+  padding: 10px;
+  margin-top: 10px;
 }
