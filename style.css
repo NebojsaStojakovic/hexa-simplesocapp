@@ -187,3 +187,7 @@ form ul li {
   padding: 10px;
   margin-top: 10px;
 }
+#editAccount,
+#logout {
+  padding: 5px 10px;
+}

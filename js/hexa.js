@@ -117,7 +117,14 @@ async function getAllPosts() {
       user = await user.get(post.user_id);
 
       let comments = new Comment();
-      comments = await comments.get(post_id);
+      comments = await comments.get(post.id);
+
+      let comments_html = "";
+      if (comments.length > 0) {
+        comments.forEach((comment) => {
+          comments_html += `<div class="single-comment">${comment.content}</div>`;
+        });
+      }
 
       let html = document.querySelector("#allPostsWrapper").innerHTML;
 
@@ -146,6 +153,7 @@ async function getAllPosts() {
             <input type="text" placeholder="Napisi komentar..." />
             <button onclick="commentPostSubmit(event)">Comment</button>
           </form>
+          ${comments_html}
         </div>
       </div>
       ` + html;
@@ -179,9 +187,25 @@ const commentPostSubmit = (e) => {
   comment.create();
 };
 
-const removeMyPost = (el) => {};
+const removeMyPost = (btn) => {
+  let post_id = btn.closest(".single-post").getAttribute("data-post_id");
+  btn.closest(".single-post").remove();
 
-const likePost = (el) => {};
+  let post = new Post();
+  post.delete(post_id);
+};
+
+const likePost = (btn) => {
+  let main_post_el = btn.closest(".single-post");
+  let post_id = btn.closest(".single-post").getAttribute("data-post_id");
+  let number_of_likes = parseInt(btn.querySelector("span").innerText);
+
+  btn.querySelector("span").innerText = number_of_likes + 1;
+  btn.setAttribute("disabled", "true");
+
+  let post = new Post();
+  post.like(post_id, number_of_likes + 1);
+};
 
 const commentPost = (btn) => {
   let main_post_el = btn.closest(".single-post");
